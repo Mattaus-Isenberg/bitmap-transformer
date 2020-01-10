@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 
 
+
+
 public class Bitmap {
     BufferedImage image;
     int height;
@@ -30,7 +32,10 @@ public class Bitmap {
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
                 Color color = new Color(this.image.getRGB(x, y));
-                int greyColor = (color.getRed() + color.getGreen() + color.getBlue() / 3);
+                int red = color.getRed();
+                int green = color.getGreen();
+                int blue = color.getBlue();
+                int greyColor = ((red + green + blue) / 3);
                 int rgbMod = new Color(greyColor, greyColor, greyColor).getRGB();
                 this.image.setRGB(x, y, rgbMod);
             }
@@ -50,13 +55,26 @@ public class Bitmap {
         }
     }
 
-    public void rotateColors() {
+    public void randomize() {
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
                 Color color = new Color(this.image.getRGB(x, y));
-                int rgbMod = new Color(color.getRed(), color.getGreen(), color.getBlue()).getRGB();
+                int green = (int)(Math.random() * 255);
+                int blue = (int)(Math.random() * 255);
+                int red = (int)(Math.random() * 255);
+                int rgbMod = new Color(red, green, blue).getRGB();
                 this.image.setRGB(x, y, rgbMod);
             }
         }
     }
+
+    public void mirror(){
+        for(int xx = this.width-1;xx>0;xx--){
+            for(int yy = 0;yy < this.height;yy++){
+                this.image.setRGB(this.width-xx, yy, this.image.getRGB(xx, yy));
+            }
+        }
+    }
+
+
 }
