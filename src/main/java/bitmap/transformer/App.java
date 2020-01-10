@@ -11,17 +11,10 @@ public class App {
 
     public static void main(String[] args) throws IOException {
 
-            Bitmap brokenDown = new Bitmap(args[0]);
+        Bitmap bitStruc = new Bitmap("/Users/Mattaus/codefellows/401/bitmap-transformer/src/main/resources/mario.bmp");
+        bitStruc.negative();
 
-            switch (args[2].toLowerCase()) {
-                case ("greyscale") : brokenDown.greyScale();
-                    break;
-                case ("negative") : brokenDown.negative();
-                    break;
-                case ("rotatecolors") : brokenDown.rotateColors();
-            }
-
-            brokenDown.writeBitmap(args[1]);
+        bitStruc.writeBitmap("/Users/Mattaus/codefellows/401/test.bmp");
 
         }
 }
